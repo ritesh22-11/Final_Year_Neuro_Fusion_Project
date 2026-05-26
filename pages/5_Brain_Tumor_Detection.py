@@ -1,14 +1,15 @@
 """
 pages/5_Brain_Tumor_Detection.py
 Brain Tumor MRI Classification 
-Model downloads from Google Drive on first run (not stored in GitHub)
+Model downloads from Hugging Face on first run (not stored in GitHub)
 """
 
 import streamlit as st
 import numpy as np
 import json
 import os
-import gdown
+import shutil
+from huggingface_hub import hf_hub_download
 from PIL import Image
 import matplotlib.pyplot as plt
 import matplotlib.cm as mpl_cm
@@ -693,11 +694,12 @@ hr { border-color: var(--border-dim) !important; }
 """, unsafe_allow_html=True)
 
 # ─────────────────────────────────────────────
-# CONSTANTS  (unchanged)
+# CONSTANTS
 # ─────────────────────────────────────────────
-IMAGE_SIZE      = (224, 224)
-MODEL_DRIVE_ID = "182-lKxcwQUDxs4so2jcql5N8yy6JUsjO"
-MODEL_PATH      = "best_model.h5"
+IMAGE_SIZE  = (224, 224)
+HF_REPO_ID  = "Riteshkumarverma/brain-tumor-vgg16-model"
+HF_FILENAME = "best_model_compatible.h5"
+MODEL_PATH  = "best_model_compatible.h5"
 
 DEFAULT_LABELS = {
     "0": "glioma", "1": "meningioma",
@@ -737,15 +739,20 @@ URGENCY = {
 }
 
 # ─────────────────────────────────────────────
-# MODEL LOADING  
+# MODEL LOADING
 # ─────────────────────────────────────────────
 @st.cache_resource(show_spinner=False)
 def load_model():
     if not os.path.exists(MODEL_PATH):
-        with st.spinner("⬇️ Downloading model from Drive (first run only)..."):
+        with st.spinner("⬇️ Downloading model from Hugging Face (first run only)..."):
             try:
-                url = f"https://drive.google.com/uc?id={MODEL_DRIVE_ID}"
-                gdown.download(url, MODEL_PATH, quiet=False, fuzzy=True)
+                cached = hf_hub_download(
+                    repo_id=HF_REPO_ID,
+                    filename=HF_FILENAME,
+                    local_dir="."
+                )
+                if os.path.abspath(cached) != os.path.abspath(MODEL_PATH):
+                    shutil.copy(cached, MODEL_PATH)
             except Exception as e:
                 st.error(f"Download failed: {e}")
                 return None
@@ -804,7 +811,7 @@ def load_metadata():
     return labels, info
 
 # ─────────────────────────────────────────────
-# PREPROCESSING  
+# PREPROCESSING
 # ─────────────────────────────────────────────
 def preprocess(img: Image.Image) -> np.ndarray:
     img = img.convert("RGB").resize(IMAGE_SIZE)
@@ -816,7 +823,7 @@ def preprocess(img: Image.Image) -> np.ndarray:
     return np.expand_dims(arr, 0)
 
 # ─────────────────────────────────────────────
-# GRADCAM  
+# GRADCAM
 # ─────────────────────────────────────────────
 def gradcam(model, arr, layer="block5_conv3"):
     try:
@@ -851,7 +858,7 @@ def overlay(img: Image.Image, hm: np.ndarray, alpha=0.4):
     return Image.fromarray(ov), Image.fromarray(colored)
 
 # ─────────────────────────────────────────────
-# CHART  — dark theme
+# CHART — dark theme
 # ─────────────────────────────────────────────
 def prob_chart(probs, labels):
     names  = [labels[str(i)] for i in range(len(probs))]
@@ -959,7 +966,7 @@ with st.sidebar:
         )
 
 # ─────────────────────────────────────────────
-# MAIN 
+# MAIN
 # ─────────────────────────────────────────────
 st.markdown("""
 <div class='ns-hero'>
