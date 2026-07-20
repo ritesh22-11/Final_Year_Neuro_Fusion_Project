@@ -79,6 +79,26 @@ https://github.com/user-attachments/assets/360876dc-551a-498b-ab75-472137fed751
 |---------------------------------|---------------------------------|
 
 
+<h3>🧠 Brain Tumor Detection</h3>
+<p>
+This module leverages <strong>Deep Learning with VGG16 Transfer Learning and Squeeze-and-Excitation (SE) Attention</strong> to classify brain MRI scans into multiple tumor categories. It combines a two-phase fine-tuning strategy with <strong>Grad-CAM explainability</strong>, enabling accurate and interpretable AI-assisted diagnosis for brain tumor detection.
+</p>
+<ul>
+  <li>✅ Classifies MRI scans into <strong>Glioma, Meningioma, Pituitary, No Tumor,</strong> and <strong>Other</strong> categories.</li>
+
+  <li>✅ Built using a <strong>VGG16 + Squeeze-and-Excitation (SE) Attention</strong> architecture with two-phase transfer learning.</li>
+
+  <li>✅ Generates <strong>Grad-CAM heatmaps</strong> to visualize the regions influencing the model's predictions.</li>
+
+  <li>✅ Displays prediction confidence, class probabilities, and AI-assisted diagnostic insights.</li>
+
+  <li>✅ Achieves approximately <strong>98% classification accuracy</strong> with excellent model reliability.</li>
+</ul>
+
+| ![Screenshot 1](utils/img9.png) | ![Screenshot 2](utils/img10.png) |
+|---------------------------------|---------------------------------|
+
+
 ---
 
 <h2>📂 Folder Structure</h2>
