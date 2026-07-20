@@ -13,8 +13,9 @@
 </p>
 
 
+
 ### 🎥 [Brain Tumor Detection Demo](https://drive.google.com/file/d/1dAgAYa241bqZ6OP-wiu6yDe6ZCocqXkJ/view?usp=sharing)
-https://drive.google.com/file/d/1dAgAYa241bqZ6OP-wiu6yDe6ZCocqXkJ/view?usp=sharing
+
 
 
 
