@@ -32,7 +32,7 @@ https://github.com/user-attachments/assets/360876dc-551a-498b-ab75-472137fed751
 </ul>
 
 | ![Screenshot 1](utils/img1.png) | ![Screenshot 2](utils/img2.png) |
-|---------------------------------|---------------------------------|
+| ![Screenshot 2](utils/img2_1.png) | ![Screenshot 2](utils/img2_2.png) |
 
 <h3>💊 AI-Powered Drug Recommendation</h3>
 <p>
