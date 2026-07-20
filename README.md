@@ -1,7 +1,7 @@
 <h1 align="center">🩺 Neuro-Fusion-Integrated-Disease-Prediction-Clinical-Intelligence-System</h1>
 
 <p align="center">
-  <strong>Revolutionizing Healthcare with AI-Driven Predictions, Recommendations, and Insights, Medibot(RAG)</strong>
+  <strong>Revolutionizing Healthcare with AI-Driven Predictions, Recommendations, and Insights, Medibot(RAG), Brain Tumor Prediction</strong>
   <br>
 </p>
 
